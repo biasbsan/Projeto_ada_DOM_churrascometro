@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Itens para Churrasco</title>
+  <script src="script.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .shopping-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .shopping-list li {
+      background-color: #fff;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .shopping-list li:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Lista de Itens para Churrasco</h1>
+  <ul id="item-list">
+  </ul>
+
+  <script>
+    function calcularValores() {
+
+      men = localStorage.getItem('churras.men');
+      women = localStorage.getItem('churras.women');
+      children = localStorage.getItem('churras.children');
+      drink = localStorage.getItem('churras.drink');
+
+
+      var listaItens = calculateChurrasco(men, drink, women, 0, drink);
+
+      document.getElementById('item-list').innerHTML = '';
+
+
+      for (var item in listaItens) {
+        var listItem = document.createElement('li');
+
+        var rounded = listaItens[item].quantity.toFixed(2);
+        parseFloat(rounded) === parseInt(rounded) ? rounded = parseInt(rounded) : rounded = parseFloat(rounded)
+
+        listItem.textContent = listaItens[item].name + ': ' + rounded + " " + listaItens[item].unit;
+        document.getElementById('item-list').appendChild(listItem);
+      }
+    }
+
+    calcularValores();
+  </script>
+</body>
+
+</html>

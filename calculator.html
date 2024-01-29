@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <script>
+    document.addEventListener('click', function (event) {
+      if (event.target.classList.contains('btn')) {
+        const id = event.target.dataset.id;
+        const span = document.getElementById(id);
+        let quantity = parseInt(span.innerText);
+
+        if (event.target.classList.contains('btn-increment')) {
+          quantity++;
+        } else if (event.target.classList.contains('btn-decrement') && quantity > 0) {
+          quantity--;
+        }
+
+        span.innerText = quantity;
+      }
+    });
+
+    function getChurrascoList() {
+      const men = document.getElementById('quantity-men').innerText;
+      const women = document.getElementById('quantity-women').innerText;
+      const children = document.getElementById('quantity-children').innerText;
+      const drink = document.getElementById('quantity-alcool').innerText;
+
+
+      localStorage.setItem('churras.men', men);
+      localStorage.setItem('churras.women', women);
+      localStorage.setItem('churras.children', children);
+      localStorage.setItem('churras.drink', drink);
+
+      window.location.href = 'menu.html';
+    }
+  </script>
+
+</head>
+
+<body>
+  <h1>
+    Churrascômetro
+  </h1>
+
+  <h2>
+    sdadsads
+  </h2>
+
+  <div class="box">
+    <div class="title">Homens</div>
+    <div class="quantity">
+      <button class="btn btn-decrement" data-id="quantity-men">-</button>
+      <span id="quantity-men">0</span>
+      <button class="btn btn-increment" data-id="quantity-men">+</button>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="title">Mulheres</div>
+    <div class="quantity">
+      <button class="btn btn-decrement" data-id="quantity-women">-</button>
+      <span id="quantity-women">0</span>
+      <button class="btn btn-increment" data-id="quantity-women">+</button>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="title">Crianças</div>
+    <div class="quantity">
+      <button class="btn btn-decrement" data-id="quantity-children">-</button>
+      <span id="quantity-children">0</span>
+      <button class="btn btn-increment" data-id="quantity-children">+</button>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="title">Bebem Bebida Alcolica</div>
+    <div class="quantity">
+      <button class="btn btn-decrement" data-id="quantity-alcool">-</button>
+      <span id="quantity-alcool">0</span>
+      <button class="btn btn-increment" data-id="quantity-alcool">+</button>
+    </div>
+  </div>
+
+  <button onclick="getChurrascoList()">Calcular</button>
+
+</body>
+
+</html>
